@@ -9,11 +9,26 @@ namespace BudgetApp
     internal class Budget
     {
         private Category budgetCategory;
-        private int budgetValue;
+        private double budgetValue;
 
-        public Budget()
+        public Budget(Category cat, double val)
         {
+            budgetCategory = cat;
+            budgetValue = val;
+        }
 
+        public Category GetBudgetCategory()
+        {
+            return budgetCategory;
+        }
+        public double GetBudgetValue()
+        {
+            return budgetValue;
+        }
+
+        public void SetBudgetValue(double val)
+        {
+            budgetValue = val;
         }
     }
 }

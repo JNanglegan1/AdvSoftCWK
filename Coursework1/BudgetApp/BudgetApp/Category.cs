@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BudgetApp.Transaction;
 
 namespace BudgetApp
 {
@@ -14,6 +15,9 @@ namespace BudgetApp
             categoryName = cName;
         }
 
-        //GetMethod
+        public string GetCategory()
+        {
+            return categoryName;
+        }
     }
 }

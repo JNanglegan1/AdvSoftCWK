@@ -1,0 +1,15 @@
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.AssemblyInfoInputs.cache
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.AssemblyInfo.cs
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.csproj.CoreCompileInputs.cache
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.sourcelink.json
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\bin\Debug\net8.0\BudgetApp.exe
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\bin\Debug\net8.0\BudgetApp.deps.json
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\bin\Debug\net8.0\BudgetApp.runtimeconfig.json
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\bin\Debug\net8.0\BudgetApp.dll
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\bin\Debug\net8.0\BudgetApp.pdb
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.dll
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\refint\BudgetApp.dll
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.pdb
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\BudgetApp.genruntimeconfig.cache
+C:\Users\jasly\Documents\Uni\AdvancedSoftware\Coursework1\BudgetApp\BudgetApp\obj\Debug\net8.0\ref\BudgetApp.dll
