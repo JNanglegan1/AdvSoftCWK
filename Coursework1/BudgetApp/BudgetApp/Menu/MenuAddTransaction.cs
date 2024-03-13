@@ -3,41 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BudgetApp;
 using BudgetApp.Transaction;
 using BudgetApp.Accounts;
 using static BudgetApp.Transaction.Transactions;
+using BudgetApp.Managers;
 
 namespace BudgetApp.Menu
 {
     internal class MenuAddTransaction : IMenuItem
     {
-        private BudgetManager budgetManager;
+        private MenuManager menuManager;
+        private CategoryManager categoryManager;
+        private TransactionManager transactionManager;
 
-        public MenuAddTransaction(BudgetManager budgetManager)
+        public MenuAddTransaction(MenuManager menuManager, TransactionManager transactionManager, CategoryManager categoryManager)
         {
-            this.budgetManager = budgetManager;
+            this.menuManager = menuManager;
+            this.transactionManager = transactionManager;
+            this.categoryManager = categoryManager;
         }
 
         public int OptionNumber => 1;
-        public string OptionName => "[1] Add Transaction to a Category.";
+        public string OptionName => "Add Transaction to a Category.";
         public void Action()
         {
-            if (budgetManager != null)
+            if (menuManager != null)
             {
-                Console.WriteLine("Please select a Category: ");
-                budgetManager.ListCategories();
+                Console.Clear();
+                Console.WriteLine("DEBUG: menuManager is not null");
 
+                //This part returns an error
                 string categoryName;
                 Category category;
                 do
                 {
+                    categoryManager.ListCategories();
+                    Console.Write("Please select a Category: ");
                     categoryName = Console.ReadLine();
-                    category = budgetManager.GetCategoryByName(categoryName);
+                    category = categoryManager.GetCategoryByName(categoryName);
                 } while (category == null);
 
 
-            Console.Write("Please select the transaction type [1]-Income [2]-Expense: ");
+
+                Console.Write("Please select the transaction type [1]-Income [2]-Expense: ");
                 string transactionTypeInput = Console.ReadLine();
                 TransactionType transactionType;
                 switch (transactionTypeInput)
@@ -63,10 +71,35 @@ namespace BudgetApp.Menu
                 } while (recurringTransactionInput != "Y" && recurringTransactionInput != "N");
                 bool isRecurring = recurringTransactionInput == "Y";
 
+                //This part of making a transaction can be set to null if the user chose "N"
+                RecurringTransaction recurringObject;
+                if (isRecurring != true)
+                {
+                    recurringObject = null;
+                }
+                else
+                {
+                    Console.WriteLine("Please type in a payment interval (once a week, once a month etc.): ");
+                    string recurringInterval = Console.ReadLine();
+                    DateTime nextTransactionDate;
+                    while (true)
+                    {
+                        Console.WriteLine("Please type in the Next Transaction Date [dd/mm/yyyy]: "); ;
+                        if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out nextTransactionDate)) { break; }
+                        else { Console.WriteLine("Invalid input. Please type a date in format [dd/mm/yyyy]."); }
+                    }
+                    DateTime endTransactionDate;
+                    while (true)
+                    {
+                        Console.WriteLine("Please type in the Final Transaction Date [dd/mm/yyyy]: "); ;
+                        if (DateTime.TryParseExact(Console.ReadLine(), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out endTransactionDate)) { break; }
+                        else { Console.WriteLine("Invalid input. Please type a date in format [dd/mm/yyyy]."); }
+                    }
+                    recurringObject = new RecurringTransaction(recurringInterval, nextTransactionDate, endTransactionDate);
+                }
 
-                Console.Write("Please input a unique transaction ID: ");
-                string transactionID = Console.ReadLine();
-                TransactionID inputtransactionID = new TransactionID(transactionID);
+                //Generates a new Transaction ID
+                TransactionID transactionID = new TransactionID();
 
                 Console.Write("Please input transaction name: ");
                 string transactionName = Console.ReadLine();
@@ -92,14 +125,17 @@ namespace BudgetApp.Menu
                     Console.Write("Please input the Payer name: ");
                     string incomePayer = Console.ReadLine();
                     // Create Income object
-                    IncomeTransaction incomeTransaction = new IncomeTransaction(inputtransactionID, transactionName, transactionValue, transactionDate, category, incomeType, incomePayer);
-                    budgetManager.AddTransaction(incomeTransaction);
+                    IncomeTransaction incomeTransaction = new IncomeTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, incomeType, incomePayer);
+                    transactionManager.AddTransaction(category, incomeTransaction);
                 }
                 else if (transactionType == TransactionType.Expense)
                 {
-                    // Create Expense object
-                    //ExpenseTransaction expenseTransaction = new ExpenseTransaction(transactionID, transactionName, transactionValue, transactionDate, isRecurring); // Assuming ExpenseTransaction constructor takes these parameters
-                    //budgetManager.AddTransaction(expenseTransaction);
+                    Console.Write("Please input the Expense type (): ");
+                    string expenseType = Console.ReadLine();
+                    Console.Write("Please input the Payee name: ");
+                    string expensePayee = Console.ReadLine();
+                    ExpenseTransaction expenseTransaction = new ExpenseTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, expenseType, expensePayee); 
+                    transactionManager.AddTransaction(category, expenseTransaction);
                 }
                 else
                 {
@@ -108,7 +144,7 @@ namespace BudgetApp.Menu
             }
             else
             {
-                Console.WriteLine("Error: Budget manager not initialized!");
+                Console.WriteLine("Error: Menu manager is not initialized!");
             }
         }
     }

@@ -8,13 +8,17 @@ namespace BudgetApp.Transaction
 {
     internal class TransactionID
     {
-        private string transactionID;
+        //private string transactionID;
 
-        public TransactionID(string transactionID)
+        static int counter;
+        private int transactionID;
+
+        public TransactionID()
         {
-            this.transactionID = transactionID;
+            counter++;
+            this.transactionID = counter;
         }
-        public string GetTransactionID()
+        public int GetTransactionID()
         {
             return transactionID;
         }

@@ -11,8 +11,8 @@ namespace BudgetApp.Transaction
         private string IncomeType;
         private string Payer;
 
-        public IncomeTransaction(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, string iType, string iPayer) : 
-            base ( tID, tName, tValue, tDate, tCat) //, isRecurring)
+        public IncomeTransaction(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, bool isRecurring, RecurringTransaction? recurringObject, string iType, string iPayer) : 
+            base ( tID, tName, tValue, tDate, tCat, isRecurring, recurringObject)
         {
             IncomeType = iType;
             Payer = iPayer;

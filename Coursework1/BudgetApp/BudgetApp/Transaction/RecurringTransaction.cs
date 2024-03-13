@@ -12,8 +12,7 @@ namespace BudgetApp.Transaction
         private DateTime NextTransactionDate;
         private DateTime EndDate;
 
-        //public RecurringTransaction(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, RecurringTransaction isRecurring, string interval, DateTime ntd, DateTime ed) :
-        //    base (tID, tName, tValue, tDate, tCat, isRecurring)
+        //If implemented, change the bool isRecurring to RecurringTransaction isRecurring
         public RecurringTransaction(string interval, DateTime ntd, DateTime ed)
         {
             Interval = interval;
@@ -33,10 +32,9 @@ namespace BudgetApp.Transaction
         {
             return EndDate;
         }
-        //public override void Display()
         public void Display()
         {
-            //base.Display();
+            Console.WriteLine("#--- Recurring Transaction Info ---#");
             Console.WriteLine("Payment Interval: " + Interval);
             Console.WriteLine("Next Transaction Date: " + NextTransactionDate.ToString());
             Console.WriteLine("End Date: " + EndDate.ToString());

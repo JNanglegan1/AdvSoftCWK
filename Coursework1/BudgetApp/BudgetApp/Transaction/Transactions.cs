@@ -13,15 +13,17 @@ namespace BudgetApp.Transaction
         private double transactionValue;
         private DateTime transactionDate;
         private Category category;
-        private RecurringTransaction isRecurring;
-        public Transactions(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat) //, RecurringTransaction? tIsRecurring)
+        private bool isRecurring;
+        private RecurringTransaction recurringObject;
+        public Transactions(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, bool IsRecurring, RecurringTransaction? RecurringObject) 
         {
             transactionID = tID;
             transactionName = tName;
             transactionValue = tValue;
             transactionDate = tDate;
             category = tCat;
-            //isRecurring = tIsRecurring;
+            isRecurring = IsRecurring;
+            recurringObject = RecurringObject;
         }
         public TransactionID GetTransactionID()
         {
@@ -37,11 +39,19 @@ namespace BudgetApp.Transaction
         }
         public DateTime GetTransactionDate()
         {
-            return transactionDate; //TODO: need to convert datetime to string
+            return transactionDate; 
         }
         public Category GetCategory()
         {
             return category;
+        }
+        public bool IsRecurring()
+        {
+            return isRecurring;
+        }
+        public RecurringTransaction RecurringObject()
+        {
+            return recurringObject;
         }
         //Enum below: For MenuCatagories
         public enum TransactionType
@@ -51,12 +61,22 @@ namespace BudgetApp.Transaction
             Null
         }
 
-        public virtual void Display() //may need to override for others
+        public virtual void Display()
         {
             Console.WriteLine("#------------------------#");
+            Console.WriteLine("ID: " + transactionID.GetTransactionID());
             Console.WriteLine("Name: " + transactionName);
-            Console.WriteLine("Price: " + transactionValue);
+            Console.WriteLine($"Price: { transactionValue: C2}");
             Console.WriteLine("Date of Transaction: " + transactionDate.ToString());
+            if (isRecurring != true)
+            {
+                Console.WriteLine("This is not a recurring Transaction.");
+                recurringObject.Display();
+            }
+            else
+            {
+                Console.WriteLine("This is a recurring Transaction.");
+            }
         }
     }
 }

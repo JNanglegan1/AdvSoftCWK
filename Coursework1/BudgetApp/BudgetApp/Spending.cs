@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BudgetApp.Accounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,23 @@ namespace BudgetApp
 {
     internal class Spending
     {
-        private Category spendingCategory;
         private double spendingValue;
         
-        public Spending (Category sCat, double sValue)
+        public Spending (double sValue)
         {
-            spendingCategory = sCat;
             spendingValue = sValue;
+        }
+        public double GetSpendingValue()
+        {
+            return spendingValue;
+        }
+        public void AddTransaction(double transactionValue)
+        {
+            spendingValue += transactionValue;
+        }
+        public void SetSpendingValue(double value)
+        {
+            spendingValue = value;
         }
     }
 }
