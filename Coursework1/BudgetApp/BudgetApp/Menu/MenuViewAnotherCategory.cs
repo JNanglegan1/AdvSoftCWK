@@ -25,6 +25,7 @@ namespace BudgetApp.Menu
             string categoryName;
             do
             {
+                categoryManager.ListCategories();
                 Console.Write("Please type the name of the Category you wish to view: ");
                 categoryName = Console.ReadLine();
                 if (!categoryManager.CategoryExists(categoryName))
@@ -34,9 +35,11 @@ namespace BudgetApp.Menu
             } while (!categoryManager.CategoryExists(categoryName));
             Category category = categoryManager.GetCategoryByName(categoryName);
 
-            Console.WriteLine("You are now viewing Category: " + categoryName);
             category.Display();
 
+            Console.WriteLine("You are now viewing Category: " + categoryName);
+            Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
+            Console.Read();
         }
     }
 }

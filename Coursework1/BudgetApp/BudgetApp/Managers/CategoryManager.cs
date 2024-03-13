@@ -17,11 +17,13 @@ namespace BudgetApp.Managers
             }
             else
             {
-                Console.WriteLine("Available Categories:");
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine("List of Available Categories:");
                 foreach (Category category in categories)
                 {
                     Console.WriteLine(category.GetCategory());
                 }
+                Console.WriteLine("----------------------------------");
             }
         }
         public void AddCategory(Category category)

@@ -66,16 +66,16 @@ namespace BudgetApp.Transaction
             Console.WriteLine("#------------------------#");
             Console.WriteLine("ID: " + transactionID.GetTransactionID());
             Console.WriteLine("Name: " + transactionName);
-            Console.WriteLine($"Price: { transactionValue: C2}");
+            Console.WriteLine($"Price: {transactionValue:C2}");
             Console.WriteLine("Date of Transaction: " + transactionDate.ToString());
             if (isRecurring != true)
             {
                 Console.WriteLine("This is not a recurring Transaction.");
-                recurringObject.Display();
             }
             else
             {
                 Console.WriteLine("This is a recurring Transaction.");
+                recurringObject.Display();
             }
         }
     }

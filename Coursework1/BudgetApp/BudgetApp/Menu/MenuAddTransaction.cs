@@ -146,6 +146,8 @@ namespace BudgetApp.Menu
             {
                 Console.WriteLine("Error: Menu manager is not initialized!");
             }
+            Console.WriteLine("Press [ENTER] to continue to Menu");
+            Console.ReadLine();
         }
     }
 }
