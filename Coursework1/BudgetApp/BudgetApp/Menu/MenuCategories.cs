@@ -58,7 +58,7 @@ namespace BudgetApp.Menu
             //Display the Menu//
             AddMenuItem(new MenuAddTransaction(menuManager, transactionManager, categoryManager));
             AddMenuItem(new MenuViewAnotherCategory(menuManager, categoryManager));
-            mainMenuItems.Add(new Menu_AddNewCategory(categoryManager));
+            AddMenuItem(new Menu_AddNewCategory(categoryManager));
             mainMenuItems.Add(new Menu_EditBudget(categoryManager));
             mainMenuItems.Add(new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager));
             mainMenuItems.Add(new Menu_DeleteCategory(menuManager, categoryManager));
@@ -89,105 +89,32 @@ namespace BudgetApp.Menu
             new MenuViewAnotherCategory(menuManager, categoryManager).Action();
         }
         //Add New Category
-        public class Menu_AddNewCategory : IMenuItem
+        public void AddNewCategory()
         {
-            private CategoryManager categoryManager;
-            //private BudgetManager budgetManager;
-            public Menu_AddNewCategory(CategoryManager categoryManager)
-            {
-                this.categoryManager = categoryManager;
-            }
-            public int OptionNumber => 3;
-            public string OptionName => "Add New Category.";
-            public void Action()
-            {
-                Console.Clear();
-                Console.Write("Please enter the name of your new Category: ");
-                string categoryName = Console.ReadLine();
-                Category newCategory = new Category(categoryName);
-                Console.Write("Please enter the Budget Goal for " + categoryName + ": ");
-                string newBudgetGoal = Console.ReadLine();
-                double newBudget = Convert.ToDouble(newBudgetGoal);
-                newCategory.SetBudget(newBudget);
-                categoryManager.AddCategory(newCategory);
-                Console.WriteLine("Category added successfully!");
-                Console.WriteLine();
-                newCategory.Display();
-                Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
-                Console.Read();
-            }
+            new Menu_AddNewCategory(categoryManager).Action();
         }
+
         //Edit chosen Category 
-        public class Menu_EditBudget : IMenuItem
+        public void EditBudget() 
         {
-            private CategoryManager categoryManager;
-            public Menu_EditBudget(CategoryManager categoryManager)
-            {
-                this.categoryManager = categoryManager;
-            }
-
-            public int OptionNumber => 4;
-            public string OptionName => "Edit Budget for a Catagory.";
-            public void Action()
-            {
-                Console.Clear();
-                Console.WriteLine("Please select a category:");
-                Console.WriteLine("Would you like to change the name of this category?[Y/N]");
-                Console.WriteLine("Please input a new name.");
-                Console.WriteLine("Would you like to change the Budget for this category?[Y/N]");
-                Console.Write("Please input the value for your Budget: ");
-                Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
-                Console.Read();
-            }
+            new Menu_EditBudget(categoryManager).Action();
         }
+
         //Delete chosen Transaction
-        public class Menu_DeleteTransaction : IMenuItem
+        public void DeleteTransaction()
         {
-            private MenuManager menuManager;
-            private CategoryManager categoryManager;
-            private TransactionManager transactionManager;
-
-            public Menu_DeleteTransaction(MenuManager menuManager, CategoryManager categoryManager, TransactionManager transactionManager)
-            {
-                this.menuManager = menuManager;
-                this.categoryManager = categoryManager;
-                this.transactionManager = transactionManager;
-            }
-            public int OptionNumber => 5;
-            public string OptionName => "Delete Transaction.";
-            public void Action()
-            {
-                Console.Clear();
-                Console.WriteLine("Please select the Category you would like to view: ");
-                categoryManager.ListCategories();
-                Console.ReadLine();
-                //View the category.Display() info for the chosen category
-                Console.WriteLine("Please input the ID of the transaction you would like to delete: ");
-                Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
-                Console.Read();
-            }
+            new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager).Action();
         }
+        
         //Delete chosen Category
-        public class Menu_DeleteCategory : IMenuItem
+        public void DeleteCategory()
         {
-            private MenuManager menuManager;
-            private CategoryManager categoryManager;
-
-            public Menu_DeleteCategory(MenuManager menuManager, CategoryManager categoryManager)
-            {
-                this.menuManager = menuManager;
-                this.categoryManager = categoryManager;
-            }
-            public int OptionNumber => 6;
-            public string OptionName => "Delete Category.";
-            public void Action()
-            {
-                Console.Clear();
-                categoryManager.ListCategories();
-                Console.WriteLine("Please select the Category you would like to delete.");
-                Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
-                Console.Read();
-            }
+            new Menu_DeleteCategory(menuManager, categoryManager).Action();
+        }
+        //Print a chosen Category's info (including Budget, Spending and Transactions)
+        public void PrintCategory()
+        {
+            Console.WriteLine("Printing goes here"); //Remove this later
         }
 
     }

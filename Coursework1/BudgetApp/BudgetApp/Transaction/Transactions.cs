@@ -15,7 +15,9 @@ namespace BudgetApp.Transaction
         private Category category;
         private bool isRecurring;
         private RecurringTransaction recurringObject;
-        public Transactions(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, bool IsRecurring, RecurringTransaction? RecurringObject) 
+        private TransactionType transactionType;
+        public Transactions(TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat,
+            bool IsRecurring, RecurringTransaction? RecurringObject, TransactionType TransactionType) 
         {
             transactionID = tID;
             transactionName = tName;
@@ -24,6 +26,7 @@ namespace BudgetApp.Transaction
             category = tCat;
             isRecurring = IsRecurring;
             recurringObject = RecurringObject;
+            transactionType = TransactionType;
         }
         public TransactionID GetTransactionID()
         {
@@ -59,6 +62,10 @@ namespace BudgetApp.Transaction
             Income,
             Expense,
             Null
+        }
+        public TransactionType GetTransactionType()
+        {
+            return transactionType;
         }
 
         public virtual void Display()

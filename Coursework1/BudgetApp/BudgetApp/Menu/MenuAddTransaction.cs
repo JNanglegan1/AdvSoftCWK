@@ -118,6 +118,7 @@ namespace BudgetApp.Menu
                     else { Console.WriteLine("Invalid input. Please type a date in format [dd/mm/yyyy]."); }
                 }
 
+                double newSpendingValue = 0; //default = 0 - needed to prevent assigning of an empty local variable
                 if (transactionType == TransactionType.Income)
                 {
                     Console.Write("Please input the Income type (Payroll, One-off payment etc.): ");
@@ -125,8 +126,9 @@ namespace BudgetApp.Menu
                     Console.Write("Please input the Payer name: ");
                     string incomePayer = Console.ReadLine();
                     // Create Income object
-                    IncomeTransaction incomeTransaction = new IncomeTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, incomeType, incomePayer);
+                    IncomeTransaction incomeTransaction = new IncomeTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, transactionType, incomeType, incomePayer);
                     transactionManager.AddTransaction(category, incomeTransaction);
+                    newSpendingValue = category.GetSpending().GetSpendingValue() - transactionValue;
                 }
                 else if (transactionType == TransactionType.Expense)
                 {
@@ -134,13 +136,16 @@ namespace BudgetApp.Menu
                     string expenseType = Console.ReadLine();
                     Console.Write("Please input the Payee name: ");
                     string expensePayee = Console.ReadLine();
-                    ExpenseTransaction expenseTransaction = new ExpenseTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, expenseType, expensePayee); 
+                    ExpenseTransaction expenseTransaction = new ExpenseTransaction(transactionID, transactionName, transactionValue, transactionDate, category, isRecurring, recurringObject, transactionType, expenseType, expensePayee); 
                     transactionManager.AddTransaction(category, expenseTransaction);
+                    newSpendingValue = category.GetSpending().GetSpendingValue() + transactionValue;
                 }
                 else
                 {
                     Console.WriteLine("Error: Transaction type not specified!");
                 }
+
+                category.GetSpending().SetSpendingValue(newSpendingValue);
             }
             else
             {

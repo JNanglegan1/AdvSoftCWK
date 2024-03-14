@@ -40,6 +40,11 @@ namespace BudgetApp
 
         //-----------------------------//
 
+        public void SetName(string name)
+        {
+            categoryName = name;
+        }
+
         public void SetBudget(double budget)
         {
             catBudget.SetBudgetValue(budget);
@@ -65,6 +70,13 @@ namespace BudgetApp
             if (catSpending != null)
             {
                 Console.WriteLine($"Spending: {catSpending.GetSpendingValue():C2}");
+            }
+
+            //Remaining Budget
+            if (catBudget != null && catSpending != null)
+            {
+                double remainingBudget = GetBudget().GetBudgetValue() - GetSpending().GetSpendingValue();
+                Console.WriteLine($"RemainingBudget: {remainingBudget:C2}");
             }
             Console.WriteLine("-------------------------------------------------");
             // Transactions

@@ -11,8 +11,8 @@ namespace BudgetApp.Transaction
         private string ExpenseType;
         private string Payee;
 
-        public ExpenseTransaction (TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, bool isRecurring, RecurringTransaction? recurringObject, string eType, string ePayee) :
-            base (tID, tName, tValue, tDate, tCat, isRecurring, recurringObject)
+        public ExpenseTransaction (TransactionID tID, string tName, double tValue, DateTime tDate, Category tCat, bool isRecurring, RecurringTransaction? recurringObject, TransactionType transactionType, string eType, string ePayee) :
+            base (tID, tName, tValue, tDate, tCat, isRecurring, recurringObject, transactionType)
         {
             ExpenseType = eType;
             Payee = ePayee;

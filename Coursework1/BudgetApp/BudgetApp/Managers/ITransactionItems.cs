@@ -13,6 +13,8 @@ namespace BudgetApp
         public void ListOrderedTransactions (Category category);
         public bool AddTransaction(Category category, Transactions transaction);
         public bool EditTransaction(Category category, Transactions transaction);
-        public bool DeleteTransaction(Category category, TransactionID transactionID);
+        public void DeleteTransaction(Category category, Transactions transaction);
+        public bool TransactionExists(Category category, int transactionID);
+        public Transactions GetTransactionByID(Category category, int transactionID);
     }
 }

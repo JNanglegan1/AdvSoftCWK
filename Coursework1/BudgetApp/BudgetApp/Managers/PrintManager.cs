@@ -14,7 +14,9 @@ namespace BudgetApp.Managers
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.WriteLine("~~~Budget App~~~");
-                //TO-DO
+                writer.WriteLine("Report generated on " + DateTime.Now.ToString());
+                writer.WriteLine("");
+                //Print the chosen category.Display() 
             }
         }
     }

@@ -67,7 +67,8 @@ namespace BudgetApp.Managers
                     category.GetTransactionList()[index].GetTransactionDate(),
                     transaction.GetCategory(),
                     transaction.IsRecurring(),
-                    transaction.RecurringObject()
+                    transaction.RecurringObject(),
+                    transaction.GetTransactionType()
                 );
 
                 // Replace the existing transaction in the list with the updated one
@@ -82,21 +83,22 @@ namespace BudgetApp.Managers
             }
         }
 
-        public bool DeleteTransaction(Category category, TransactionID transactionID)
+        public void DeleteTransaction(Category category, Transactions transaction)
         {
-            // We find the specified TransactionID using List.FindIndex 
-            int index = category.GetTransactionList().FindIndex(t => t.GetTransactionID().Equals(transactionID));
-
-            if (index != -1)
+            category.GetTransactionList().Remove(transaction);
+        }
+        public bool TransactionExists(Category category, int transactionID)
+        {
+            return category.GetTransactionList().Any(transaction => transaction.GetTransactionID().GetTransactionID() == transactionID);
+        }
+        public Transactions GetTransactionByID(Category category, int transactionID)
+        {
+            Transactions transaction = category.GetTransactionList().FirstOrDefault(c => c.GetTransactionID().GetTransactionID() == transactionID);
+            if (transaction == null)
             {
-                category.GetTransactionList().RemoveAt(index);
-                return true;
+                Console.WriteLine("Error: Transaction '{0}' does not exist. Please try again:", transactionID);
             }
-            else
-            {
-                Console.WriteLine("Error: This transaction does not exist!");
-                return false;
-            }
+            return transaction;
         }
     }
 }
