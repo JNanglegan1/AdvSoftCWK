@@ -97,6 +97,8 @@ namespace BudgetApp.Menu
             }
             category.SetBudget(newBudget);
             Console.WriteLine("Budget successfully updated!");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
         }
     }
 }

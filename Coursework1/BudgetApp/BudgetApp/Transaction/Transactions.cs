@@ -111,5 +111,22 @@ namespace BudgetApp.Transaction
                 recurringObject.Display();
             }
         }
+        public virtual void Stream(StreamWriter writer)
+        {
+            writer.WriteLine("#------------------------#");
+            writer.WriteLine("ID: " + transactionID.GetTransactionID());
+            writer.WriteLine("Name: " + transactionName);
+            writer.WriteLine($"Price: {transactionValue:C2}");
+            Console.WriteLine("Date of Transaction: " + transactionDate.ToString());
+            if (isRecurring != true)
+            {
+                writer.WriteLine("This is not a recurring Transaction.");
+            }
+            else
+            {
+                writer.WriteLine("This is a recurring Transaction.");
+                recurringObject.Stream(writer);
+            }
+        }
     }
 }

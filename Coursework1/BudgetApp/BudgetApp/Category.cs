@@ -94,5 +94,45 @@ namespace BudgetApp
             }
             Console.WriteLine("-------------------------------------------------");
         }
+        public void Stream(StreamWriter writer)
+        {
+            writer.WriteLine("#####################################");
+            // Category
+            writer.WriteLine($"Category Name: {categoryName}");
+            writer.WriteLine("#####################################");
+            // Budget
+            if (catBudget != null)
+            {
+                writer.WriteLine($"Budget: {catBudget.GetBudgetValue():C2}");
+            }
+
+            // Spending
+            if (catSpending != null)
+            {
+                writer.WriteLine($"Spending: {catSpending.GetSpendingValue():C2}");
+            }
+
+            //Remaining Budget
+            if (catBudget != null && catSpending != null)
+            {
+                double remainingBudget = GetBudget().GetBudgetValue() - GetSpending().GetSpendingValue();
+                writer.WriteLine($"RemainingBudget: {remainingBudget:C2}");
+            }
+            writer.WriteLine("-------------------------------------------------");
+            // Transactions
+            if (catTransactionList.Count > 0)
+            {
+                writer.WriteLine("List of Transactions:");
+                foreach (var transaction in catTransactionList)
+                {
+                    transaction.Stream(writer);
+                }
+            }
+            else
+            {
+                writer.WriteLine("There are no transactions for this category right now.");
+            }
+            writer.WriteLine("-------------------------------------------------");
+        }
     }
 }

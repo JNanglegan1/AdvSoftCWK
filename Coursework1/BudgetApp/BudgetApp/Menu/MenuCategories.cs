@@ -78,6 +78,7 @@ namespace BudgetApp.Menu
             AddMenuItem(new Menu_EditTransaction(categoryManager, transactionManager));
             AddMenuItem(new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager));
             AddMenuItem(new Menu_DeleteCategory(menuManager, categoryManager));
+            AddMenuItem(new Menu_PrintCategory(categoryManager));
 
             StartMenu();
         }
@@ -139,7 +140,7 @@ namespace BudgetApp.Menu
         //8-Print a chosen Category's info (including Budget, Spending and Transactions)
         public void PrintCategory()
         {
-            Console.WriteLine("Printing goes here"); //Remove this later
+            new Menu_PrintCategory(categoryManager).Action();
         }
 
     }

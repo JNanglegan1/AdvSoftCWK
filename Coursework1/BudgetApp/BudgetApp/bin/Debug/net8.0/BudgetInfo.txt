@@ -1,0 +1,12 @@
+~~~Budget App~~~
+Category Report generated on 15/03/2024 23:26:14
+
+#####################################
+Category Name: test
+#####################################
+Budget: £800.00
+Spending: £0.00
+RemainingBudget: £800.00
+-------------------------------------------------
+There are no transactions for this category right now.
+-------------------------------------------------

@@ -41,5 +41,12 @@ namespace BudgetApp.Transaction
             Console.WriteLine("Payee: " + Payee);
             Console.WriteLine("#------------------------#");
         }
+        public override void Stream(StreamWriter writer)
+        {
+            base.Stream(writer);
+            writer.WriteLine("Expense Type: " + ExpenseType);
+            writer.WriteLine("Payee: " + Payee);
+            writer.WriteLine("#------------------------#");
+        }
     }
 }

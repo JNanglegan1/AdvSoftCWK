@@ -55,5 +55,13 @@ namespace BudgetApp.Transaction
             Console.WriteLine("End Date: " + EndDate.ToString());
             Console.WriteLine("#------------------------#");
         }
+        public void Stream(StreamWriter writer)
+        {
+            writer.WriteLine("#--- Recurring Transaction Info ---#");
+            writer.WriteLine("Payment Interval: " + Interval);
+            writer.WriteLine("Next Transaction Date: " + NextTransactionDate.ToString());
+            writer.WriteLine("End Date: " + EndDate.ToString());
+            writer.WriteLine("#------------------------#");
+        }
     }
 }
