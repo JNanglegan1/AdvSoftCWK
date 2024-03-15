@@ -17,7 +17,7 @@ namespace BudgetApp.Menu
             this.menuManager = menuManager;
             this.categoryManager = categoryManager;
         }
-        public int OptionNumber => 6;
+        public int OptionNumber => 7;
         public string OptionName => "Delete Category.";
         public void Action()
         {

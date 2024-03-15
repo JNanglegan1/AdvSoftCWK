@@ -68,6 +68,32 @@ namespace BudgetApp.Transaction
             return transactionType;
         }
 
+        //Setters for editting
+        public void SetTransactionName(string name)
+        {
+            transactionName = name;
+        }
+        public void SetTransactionValue(double value)
+        {
+            transactionValue = value;
+        }
+        public void SetTransactionDate(DateTime date)
+        {
+            transactionDate = date;
+        }
+        public void SetIsRecurring(bool newIsRecurring)
+        {
+            isRecurring = newIsRecurring;
+        }
+        public void SetRecurringObject(RecurringTransaction newRecurringTransaction)
+        {
+            recurringObject = newRecurringTransaction;
+        }
+        public void SetTransactionType(TransactionType type)
+        {
+            transactionType = type;
+        }
+
         public virtual void Display()
         {
             Console.WriteLine("#------------------------#");

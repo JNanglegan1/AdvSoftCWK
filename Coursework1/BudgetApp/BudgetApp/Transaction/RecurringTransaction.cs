@@ -32,6 +32,21 @@ namespace BudgetApp.Transaction
         {
             return EndDate;
         }
+
+        //Setters
+        public void SetInterval(string newInterval)
+        {
+            Interval = newInterval;
+        }
+        public void SetNextTransactionDate(DateTime ntdNew)
+        {
+            NextTransactionDate = ntdNew;
+        }
+        public void SetEndDate(DateTime endNew)
+        {
+            EndDate = endNew;
+        }
+
         public void Display()
         {
             Console.WriteLine("#--- Recurring Transaction Info ---#");

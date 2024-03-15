@@ -132,7 +132,7 @@ namespace BudgetApp.Menu
                 }
                 else if (transactionType == TransactionType.Expense)
                 {
-                    Console.Write("Please input the Expense type (): ");
+                    Console.Write("Please input the Expense type (One-off payment, Subscription fee etc.): ");
                     string expenseType = Console.ReadLine();
                     Console.Write("Please input the Payee name: ");
                     string expensePayee = Console.ReadLine();

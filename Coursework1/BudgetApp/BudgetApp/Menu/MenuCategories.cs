@@ -33,6 +33,19 @@ namespace BudgetApp.Menu
         public void FirstTimeUserScene()
         {
             Console.Clear();
+
+            //Initialisation of Preset Categories
+            Category presetJan = new Category("January");
+            Category presetFeb = new Category("February");
+            Category presetMarch = new Category("March");
+            Category presetApril = new Category("April");
+            Category presetMay = new Category("May");
+            categoryManager.AddCategory(presetJan);
+            categoryManager.AddCategory(presetFeb);
+            categoryManager.AddCategory(presetMarch);
+            categoryManager.AddCategory(presetApril);
+            categoryManager.AddCategory(presetMay);
+
             //First time users will be directed to create a new catagory and a budget
             Console.WriteLine("Welcome, First Time User.");
             Console.WriteLine();
@@ -56,12 +69,16 @@ namespace BudgetApp.Menu
             Console.WriteLine("Please press [ENTER] to proceed to Main Menu.");
             Console.ReadLine();
             //Display the Menu//
+
+            //Inititialisation of Menu Options
             AddMenuItem(new MenuAddTransaction(menuManager, transactionManager, categoryManager));
             AddMenuItem(new MenuViewAnotherCategory(menuManager, categoryManager));
             AddMenuItem(new Menu_AddNewCategory(categoryManager));
-            mainMenuItems.Add(new Menu_EditBudget(categoryManager));
-            mainMenuItems.Add(new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager));
-            mainMenuItems.Add(new Menu_DeleteCategory(menuManager, categoryManager));
+            AddMenuItem(new Menu_EditBudget(categoryManager));
+            AddMenuItem(new Menu_EditTransaction(categoryManager, transactionManager));
+            AddMenuItem(new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager));
+            AddMenuItem(new Menu_DeleteCategory(menuManager, categoryManager));
+
             StartMenu();
         }
         public void StartMenu()
@@ -78,40 +95,48 @@ namespace BudgetApp.Menu
             }
         }
 
+        //1-Add transaction
         public void AddTransactionMenu()
         {
             new MenuAddTransaction(menuManager, transactionManager, categoryManager).Action();
         }
 
-        //View another category
+        //2-View another category
         public void ViewAnotherCategory()
         {
             new MenuViewAnotherCategory(menuManager, categoryManager).Action();
         }
-        //Add New Category
+
+        //3-Add New Category
         public void AddNewCategory()
         {
             new Menu_AddNewCategory(categoryManager).Action();
         }
 
-        //Edit chosen Category 
+        //4-Edit chosen Category 
         public void EditBudget() 
         {
             new Menu_EditBudget(categoryManager).Action();
         }
 
-        //Delete chosen Transaction
+        //5-Edit chosen Transaction
+        public void EditTransaction()
+        {
+            new Menu_EditTransaction(categoryManager, transactionManager).Action();
+        }
+
+        //6-Delete chosen Transaction
         public void DeleteTransaction()
         {
             new Menu_DeleteTransaction(menuManager, categoryManager, transactionManager).Action();
         }
         
-        //Delete chosen Category
+        //7-Delete chosen Category
         public void DeleteCategory()
         {
             new Menu_DeleteCategory(menuManager, categoryManager).Action();
         }
-        //Print a chosen Category's info (including Budget, Spending and Transactions)
+        //8-Print a chosen Category's info (including Budget, Spending and Transactions)
         public void PrintCategory()
         {
             Console.WriteLine("Printing goes here"); //Remove this later

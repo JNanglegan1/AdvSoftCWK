@@ -25,6 +25,15 @@ namespace BudgetApp.Transaction
         {
             return Payee;
         }
+        //Setters
+        public void SetType(string newType)
+        {
+            ExpenseType = newType;
+        }
+        public void SetPayee(string newPayer)
+        {
+            Payee = newPayer;
+        }
         public override void Display()
         {
             base.Display();
