@@ -103,6 +103,7 @@ namespace BudgetApp.Menu
 
                 Console.Write("Please input transaction name: ");
                 string transactionName = Console.ReadLine();
+
                 double transactionValue;
                 while (true)
                 {

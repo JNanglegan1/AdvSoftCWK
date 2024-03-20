@@ -29,7 +29,7 @@ namespace BudgetApp.Menu
             string categoryName;
             do
             {
-                categoryManager.ListCategories();
+                //categoryManager.ListCategories();
                 Console.Write("Please type the name of the Category you wish to view: ");
                 categoryName = Console.ReadLine();
                 if (!categoryManager.CategoryExists(categoryName))
@@ -44,7 +44,12 @@ namespace BudgetApp.Menu
             {
                 category.Display();
                 Console.WriteLine("Please select the ID of the Transaction you would like to edit: ");
-                id = Convert.ToInt32(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out id))
+                {
+                    Console.WriteLine("Invalid input. Please enter an integer value.");
+                    Console.WriteLine("Please press [ENTER] to continue");
+                    continue;  
+                }
                 if (!transactionManager.TransactionExists(category, id))
                 {
                     Console.WriteLine("Transaction not found. Please try again.");
@@ -54,14 +59,19 @@ namespace BudgetApp.Menu
 
 
             string transactionName;
-            double transactionValue;
             DateTime transactionDate;
             TransactionType newTransactionType;
 
             Console.Write("Please enter the new name for the transaction: ");
             transactionName = Console.ReadLine();
-            Console.Write("Please enter the new value for the transaction: ");
-            transactionValue = Convert.ToDouble(Console.ReadLine());
+        
+            double transactionValue;
+            while (true)
+            {
+                Console.Write("Please enter the new value for the transaction: ");
+                if (double.TryParse(Console.ReadLine(), out transactionValue)) { break; }
+                else { Console.WriteLine("Invalid input. Please type a double."); }
+            }
 
             DateTime newDate;
             while (true)
@@ -203,8 +213,8 @@ namespace BudgetApp.Menu
                     }
                     else
                     {
-                        transaction.SetIsRecurring(false); // Set recurring to false if user selects "N"
-                        transaction.SetRecurringObject(null); // Clear recurring object
+                        transaction.SetIsRecurring(false); 
+                        transaction.SetRecurringObject(null); 
                     }
 
                     Console.WriteLine("Transaction successfully edited!");
