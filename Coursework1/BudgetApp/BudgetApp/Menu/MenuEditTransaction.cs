@@ -97,7 +97,6 @@ namespace BudgetApp.Menu
 
 
             transaction.SetTransactionName(transactionName);
-            transaction.SetTransactionValue(transactionValue);
             transaction.SetTransactionDate(newDate);
             transaction.SetTransactionType(newTransactionType);
 
@@ -106,13 +105,15 @@ namespace BudgetApp.Menu
             double oldTransactionValue = transaction.GetTransactionValue();
             if (newTransactionType == TransactionType.Income)
             {
-                newSpendingValue = category.GetSpending().GetSpendingValue() - oldTransactionValue;
+                newSpendingValue = category.GetSpending().GetSpendingValue() + oldTransactionValue;
             }
             else
             {
-                newSpendingValue = category.GetSpending().GetSpendingValue() + oldTransactionValue;
+                newSpendingValue = category.GetSpending().GetSpendingValue() - oldTransactionValue;
             }
             category.GetSpending().SetSpendingValue(newSpendingValue);
+
+            transaction.SetTransactionValue(transactionValue);
 
             //Update transaction type info with new changes to spending
             double newSpending = 0;
